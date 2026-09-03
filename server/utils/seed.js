@@ -10,8 +10,14 @@ dotenv.config();
 
 const seedData = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log('Connected to MongoDB');
+    try {
+      await mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 5000 });
+      console.log('Connected to MongoDB');
+    } catch (connErr) {
+      console.log('Atlas URI failed, connecting to local in-memory MongoDB...');
+      await mongoose.connect('mongodb://127.0.0.1:27017/robocutz');
+      console.log('Connected to local in-memory MongoDB');
+    }
 
     await User.deleteMany({});
     await Barber.deleteMany({});

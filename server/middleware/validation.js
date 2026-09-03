@@ -16,7 +16,7 @@ export const validateRegister = [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().normalizeEmail().withMessage('Valid email is required'),
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
-  body('phone').optional().isMobilePhone().withMessage('Invalid phone number'),
+  body('phone').optional({ checkFalsy: true }).trim().isLength({ min: 7 }).withMessage('Invalid phone number'),
   handleValidationErrors
 ];
 
