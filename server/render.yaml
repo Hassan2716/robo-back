@@ -20,7 +20,7 @@ services:
       - key: JWT_COOKIE_EXPIRE
         value: 7
       - key: CLIENT_URL
-        value: https://your-frontend-domain.vercel.app
+        value: https://robo-front-zlrf.vercel.app,http://localhost:5173
       - key: CLOUDINARY_CLOUD_NAME
         sync: false
       - key: CLOUDINARY_API_KEY
